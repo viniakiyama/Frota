@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { VeiculoService } from 'app/services/veiculo.service';
 
 @Component({
     selector: 'table-cmp',
@@ -10,7 +11,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 export class TableCadastroVeiculos implements OnInit {
     cadastroVeiculoForm: FormGroup;
-    constructor(private fb: FormBuilder) { }
+    constructor(
+        private fb: FormBuilder,
+        private veiculoService: VeiculoService
+    ) { }
 
 
     ngOnInit() {
@@ -37,6 +41,20 @@ export class TableCadastroVeiculos implements OnInit {
         if (this.cadastroVeiculoForm.valid) {
             // Aqui você obterá todos os dados como um objeto JSON
             const dadosVeiculo = this.cadastroVeiculoForm.value;
+            this.veiculoService.salvarVeiculo(dadosVeiculo)
+                .subscribe({
+                    next: (response) => {
+                        // Tratar sucesso (Ex: mostrar mensagem, resetar formulário)
+                        console.log('Veículo salvo com sucesso!', response);
+                        alert('Veículo cadastrado!');
+                        this.cadastroVeiculoForm.reset(); // Limpa o formulário após o sucesso
+                    },
+                    error: (error) => {
+                        // Tratar erro (Ex: mostrar erro para o usuário)
+                        console.error('Erro ao salvar veículo:', error);
+                        alert('Erro no cadastro. Verifique o console.');
+                    }
+                });
             console.log('Dados do Formulário prontos para envio:', dadosVeiculo);
             // Próxima etapa: Chamar o VeiculoService para enviar os dados
             // this.veiculoService.salvarVeiculo(dadosVeiculo).subscribe(...); 
