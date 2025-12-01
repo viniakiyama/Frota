@@ -16,6 +16,8 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
+import { HttpClientModule } from '@angular/common/http'; //faz requisição http para envio/captura de informações
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     NavbarModule,
     ToastrModule.forRoot(),
     FooterModule,
-    FixedPluginModule
+    FixedPluginModule,
+    HttpClientModule
   ],
   providers: [
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'filled'}}

@@ -1,77 +1,82 @@
-<mat-form-field appearance="filled">
-  <mat-label>Placa</mat-label>
-  <input matInput>
-</mat-form-field>
+<form [formGroup]="cadastroVeiculoForm" (ngSubmit)="onSubmit()">
 
-<mat-form-field>
-  <mat-label>Marca</mat-label>
-  <mat-select>
-    <mat-option value="one">First option</mat-option>
-    <mat-option value="two">Second option</mat-option>
-  </mat-select>
-</mat-form-field>
+  <mat-form-field appearance="filled">
+    <mat-label>Placa</mat-label>
+    <input matInput formControlName="placa">
+  </mat-form-field>
 
-<mat-form-field>
-  <mat-label>Modelo</mat-label>
-  <mat-select>
-    <mat-option value="one">First option</mat-option>
-    <mat-option value="two">Second option</mat-option>
-  </mat-select>
-</mat-form-field>
+  <mat-form-field>
+    <mat-label>Marca</mat-label>
+    <mat-select formControlName="marca">
+      <mat-option value="one">First option</mat-option>
+      <mat-option value="two">Second option</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<mat-form-field>
-  <mat-label>Ano</mat-label>
-  <mat-select>
-    <mat-option value="one">First option</mat-option>
-    <mat-option value="two">Second option</mat-option>
-  </mat-select>
-</mat-form-field>
+  <mat-form-field>
+    <mat-label>Modelo</mat-label>
+    <mat-select formControlName="modelo">
+      <mat-option value="one">First option</mat-option>
+      <mat-option value="two">Second option</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<mat-form-field>
-  <mat-label>Categoria</mat-label>
-  <mat-select>
-    <mat-option value="one">First option</mat-option>
-    <mat-option value="two">Second option</mat-option>
-  </mat-select>
-</mat-form-field>
+  <mat-form-field>
+    <mat-label>Ano</mat-label>
+    <mat-select formControlName="ano">
+      <mat-option value="one">First option</mat-option>
+      <mat-option value="two">Second option</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<mat-form-field>
-  <mat-label>Quilometragem Atual</mat-label>
-  <input matInput>
-</mat-form-field>
+  <mat-form-field>
+    <mat-label>Categoria</mat-label>
+    <mat-select formControlName="categoria">
+      <mat-option value="one">First option</mat-option>
+      <mat-option value="two">Second option</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<mat-form-field>
-  <mat-label>Situação</mat-label>
-  <mat-select>
-    <mat-option value="one">First option</mat-option>
-    <mat-option value="two">Second option</mat-option>
-  </mat-select>
-</mat-form-field>
+  <mat-form-field>
+    <mat-label>Quilometragem Atual</mat-label>
+    <input matInput formControlName="quilometragemAtual">
+  </mat-form-field>
 
-<mat-form-field>
-  <mat-label>Local de Alocação</mat-label>
-  <mat-select>
-    <mat-option value="one">First option</mat-option>
-    <mat-option value="two">Second option</mat-option>
-  </mat-select>
-</mat-form-field>
+  <mat-form-field>
+    <mat-label>Situação</mat-label>
+    <mat-select formControlName="situacao">
+      <mat-option value="one">First option</mat-option>
+      <mat-option value="two">Second option</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<mat-form-field>
-  <mat-label>Motorista Responsável</mat-label>
-  <input matInput>
-</mat-form-field>
+  <mat-form-field>
+    <mat-label>Local de Alocação</mat-label>
+    <mat-select formControlName="localAlocacao">
+      <mat-option value="one">First option</mat-option>
+      <mat-option value="two">Second option</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<mat-form-field>
-  <mat-label>Data de Aquisição</mat-label>
-  <input matInput>
-</mat-form-field>
+  <mat-form-field>
+    <mat-label>Motorista Responsável</mat-label>
+    <input matInput formControlName="motoristaResponsavel">
+  </mat-form-field>
 
-<mat-form-field>
-  <mat-label>Valor de Aquisição</mat-label>
-  <input matInput>
-</mat-form-field>
+  <mat-form-field>
+    <mat-label>Data de Aquisição</mat-label>
+    <input matInput formControlName="dataAquisicao">
+  </mat-form-field>
 
-<mat-form-field>
-  <mat-label>Observações</mat-label>
-  <textarea matInput></textarea>
-</mat-form-field>
+  <mat-form-field>
+    <mat-label>Valor de Aquisição</mat-label>
+    <input matInput formControlName="valorAquisicao">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Observações</mat-label>
+    <textarea matInput formControlName="observacoes"></textarea>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Salvar Cadastro de Veículo</button>
+</form>
