@@ -11,6 +11,9 @@ import { VeiculoService } from 'app/services/veiculo.service';
 
 export class TableCadastroVeiculos implements OnInit {
     cadastroVeiculoForm: FormGroup;
+
+    veiculos: any[] = [];
+
     constructor(
         private fb: FormBuilder,
         private veiculoService: VeiculoService
@@ -19,23 +22,28 @@ export class TableCadastroVeiculos implements OnInit {
 
     ngOnInit() {
         this.cadastroVeiculoForm = this.fb.group({
-            //input
             placa: ['', Validators.required],
-            quilometragemAtual: [''],
-            motoristaResponsavel: [''],
-            dataAquisicao: [''],
-            valorAquisicao: [''],
-            observacoes: [''],
-
-            //select
+            chassi: ['', Validators.required],
+            renavam: ['', Validators.required],
             marca: ['', Validators.required],
             modelo: ['', Validators.required],
-            ano: [''],
-            categoria: [''],
-            situacao: [''],
-            localAlocacao: ['']
+            ano: [null, Validators.required],
+            categoria: ['Carro', Validators.required],
+            quilometragemAtual: [null, Validators.required],
+            situacao: ['Ativo', Validators.required],
+            localAlocacao: ['', Validators.required],
+            observacoes: ['']
         });
     }
+
+    listarVeiculos() {
+    this.veiculoService.obterVeiculos().subscribe({
+      next: (dados) => {
+        this.veiculos = dados;
+      },
+      error: (err) => console.error('Erro ao listar veículos:', err)
+    });
+  }
 
     onSubmit() {
         if (this.cadastroVeiculoForm.valid) {
