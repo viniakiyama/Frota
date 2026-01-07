@@ -1,112 +1,119 @@
 <form [formGroup]="cadastroVeiculoForm" (ngSubmit)="onSubmit()">
   <div class="container mt-4">
-  <h2 class="mb-4">🚚 Tela 1 - Identificação de Veículos</h2>
+    <h2 class="mb-4">Cadastro de Veículos</h2>
 
-  <div class="card shadow-sm mb-5">
-    <div class="card-header bg-primary text-white">Cadastrar Novo Veículo</div>
-    <div class="card-body">
-      <form [formGroup]="cadastroVeiculoForm" (ngSubmit)="onSubmit()">
-        <div class="row g-3">
-          <div class="col-md-4">
-            <label class="form-label">Placa</label>
-            <input type="text" class="form-control" formControlName="placa" placeholder="ABC1D23">
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">Número do Chassi</label>
-            <input type="text" class="form-control" formControlName="chassi">
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">RENAVAM</label>
-            <input type="text" class="form-control" formControlName="renavam">
-          </div>
+    <div class="card shadow-sm mb-5">
+      <div class="card-header bg-primary text-white">Cadastrar Novo Veículo</div>
+      <div class="card-body">
+        <form [formGroup]="cadastroVeiculoForm" (ngSubmit)="onSubmit()">
 
-          <div class="col-md-3">
-            <label class="form-label">Marca</label>
-            <input type="text" class="form-control" formControlName="marca">
-          </div>
-          <div class="col-md-3">
-            <label class="form-label">Modelo</label>
-            <input type="text" class="form-control" formControlName="modelo">
-          </div>
-          <div class="col-md-3">
-            <label class="form-label">Ano</label>
-            <input type="number" class="form-control" formControlName="ano">
-          </div>
-          <div class="col-md-3">
-            <label class="form-label">Categoria</label>
-            <select class="form-select" formControlName="categoria">
-              <option value="Carro">Carro</option>
-              <option value="Moto">Moto</option>
-              <option value="Caminhão">Caminhão</option>
-              <option value="Van">Van</option>
-            </select>
-          </div>
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="form-label">Placa</label>
+              <input type="text" class="form-control" formControlName="placa" placeholder="ABC1D23">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Número do Chassi</label>
+              <input type="text" class="form-control" formControlName="chassi">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">RENAVAM</label>
+              <input type="text" class="form-control" formControlName="renavam">
+            </div>
 
-          <div class="col-md-4">
-            <label class="form-label">KM Atual</label>
-            <input type="number" class="form-control" formControlName="quilometragemAtual">
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">Situação</label>
-            <select class="form-select" formControlName="situacao">
-              <option value="Ativo">Ativo</option>
-              <option value="Em Manutenção">Em Manutenção</option>
-              <option value="Desativado">Desativado</option>
-            </select>
-          </div>
-          <div class="col-md-4">
-            <label class="form-label">Local de Alocação</label>
-            <input type="text" class="form-control" formControlName="localAlocacao" placeholder="Ex: Filial SP">
-          </div>
+            <div class="col-md-3">
+              <label class="form-label">Modelo</label>
+              <input type="text" class="form-control" formControlName="modelo">
+            </div>
 
-          <div class="col-12">
-            <label class="form-label">Observações</label>
-            <textarea class="form-control" formControlName="observacoes" rows="2"></textarea>
-          </div>
+            <div class="col-md-3">
+              <label class="form-label">Marca</label>
+              <input type="text" class="form-control" formControlName="marca">
+            </div>
 
-          <div class="col-12 text-end mt-4">
-            <button type="submit" class="btn btn-success px-5" [disabled]="!cadastroVeiculoForm.valid">
-              Salvar Veículo
-            </button>
+            <div class="col-md-3">
+              <label class="form-label">Ano</label>
+              <input type="number" class="form-control" formControlName="ano">
+            </div>
+            <div class="col-md-3">
+              <label class="form-label">Categoria</label>
+              <select class="form-control" formControlName="categoria">
+                <option value="Carro">Carro</option>
+                <option value="Moto">Moto</option>
+                <option value="Caminhão">Caminhão</option>
+                <option value="Van">Van</option>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+              <label class="form-label">KM Atual</label>
+              <input type="number" class="form-control" formControlName="quilometragemAtual">
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Situação</label>
+              <select class="form-control" formControlName="situacao">
+                <option value="Ativo">Ativo</option>
+                <option value="Em Manutenção">Em Manutenção</option>
+                <option value="Desativado">Desativado</option>
+              </select>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Local de Alocação</label>
+              <input type="text" class="form-control" formControlName="localAlocacao" placeholder="Ex: Filial SP">
+            </div>
+
+            <div class="col-12">
+              <label class="form-label">Observações</label>
+              <textarea class="form-control" formControlName="observacoes" rows="2"></textarea>
+            </div>
+
+            <div class="col-12 text-end mt-4">
+              <button type="submit" class="btn btn-success px-5" [disabled]="!cadastroVeiculoForm.valid">
+                Salvar Veículo
+              </button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
+    </div>
+
+    <h3 class="mb-3">Lista de Veículos</h3>
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered shadow-sm">
+        <thead class="table-dark">
+          <tr>
+            <th>Placa</th>
+            <th>Chassi</th>
+            <th>Renavam</th>
+            <th>Modelo</th>
+            <th>Marca</th>
+            <th>Ano</th>
+            <th>Categoria</th>
+            <th>Quilometragem Atual</th>
+            <th>Situação</th>
+            <th>Local Alocação</th>
+            <th>Observações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let v of veiculos">
+            <td>{{ v.placa }}</td>
+            <td>{{ v.chassi }}</td>
+            <td>{{ v.renavam }}</td>
+            <td>{{ v.modelo }}</td>
+            <td>{{ v.marca }}</td>
+            <td>{{ v.ano }}</td>
+            <td>{{ v.categoria }}</td>
+            <td>{{ v.quilometragemAtual }}</td>
+            <td>{{ v.situacao }}</td>
+            <td>{{ v.localAlocacao }}</td>
+            <td>{{ v.observacoes }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-
-  <h3 class="mb-3">📋 Frota Cadastrada</h3>
-  <div class="table-responsive">
-    <table class="table table-hover table-bordered shadow-sm">
-      <thead class="table-dark">
-        <tr>
-          <th>Placa</th>
-          <th>Modelo</th>
-          <th>Chassi</th>
-          <th>RENAVAM</th>
-          <th>Situação</th>
-          <th>Local</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let v of veiculos">
-          <td class="fw-bold">{{ v.placa }}</td>
-          <td>{{ v.marca }} {{ v.modelo }}</td>
-          <td>{{ v.chassi }}</td>
-          <td>{{ v.renavam }}</td>
-          <td>
-            <span class="badge" [ngClass]="{
-              'bg-success': v.situacao === 'Ativo',
-              'bg-warning text-dark': v.situacao === 'Em Manutenção',
-              'bg-danger': v.situacao === 'Desativado'
-            }">{{ v.situacao }}</span>
-          </td>
-          <td>{{ v.localAlocacao }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<!--
+  <!--
   <div class="row">
 
     <div class="col-md-6">

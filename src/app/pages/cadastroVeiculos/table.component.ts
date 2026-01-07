@@ -19,14 +19,14 @@ export class TableCadastroVeiculos implements OnInit {
         private veiculoService: VeiculoService
     ) { }
 
-
     ngOnInit() {
+        // Inicializa o formulário
         this.cadastroVeiculoForm = this.fb.group({
             placa: ['', Validators.required],
             chassi: ['', Validators.required],
             renavam: ['', Validators.required],
-            marca: ['', Validators.required],
             modelo: ['', Validators.required],
+            marca: ['', Validators.required],
             ano: [null, Validators.required],
             categoria: ['Carro', Validators.required],
             quilometragemAtual: [null, Validators.required],
@@ -34,31 +34,46 @@ export class TableCadastroVeiculos implements OnInit {
             localAlocacao: ['', Validators.required],
             observacoes: ['']
         });
+        // BUSCA OS DADOS ASSIM QUE ENTRA NA TELA
+        this.listarVeiculos();
     }
 
     listarVeiculos() {
-    this.veiculoService.obterVeiculos().subscribe({
-      next: (dados) => {
-        this.veiculos = dados;
-      },
-      error: (err) => console.error('Erro ao listar veículos:', err)
-    });
-  }
+        this.veiculoService.obterVeiculos().subscribe({
+            next: (dados) => {
+                this.veiculos = dados; // Os dados chegam do banco
+            },
+            error: (err) => console.error('Erro ao listar veículos:', err)
+        });
+    }
 
     onSubmit() {
         if (this.cadastroVeiculoForm.valid) {
-            // Aqui você obterá todos os dados como um objeto JSON
+            // 1. Pega o objeto com os dados
             const dadosVeiculo = this.cadastroVeiculoForm.value;
+
+            // 2. Transforma os campos desejados em Maiúsculo diretamente no objeto (nao tem ano e nem quilometragem aqui porque eles são numericos, nao precisa de upperCase)
+            dadosVeiculo.placa = dadosVeiculo.placa?.toUpperCase();
+            dadosVeiculo.chassi = dadosVeiculo.chassi?.toUpperCase();
+            dadosVeiculo.renavam = dadosVeiculo.renavam?.toUpperCase();
+            dadosVeiculo.modelo = dadosVeiculo.modelo?.toUpperCase();
+            dadosVeiculo.marca = dadosVeiculo.marca?.toUpperCase();
+            dadosVeiculo.categoria = dadosVeiculo.categoria?.toUpperCase();
+            dadosVeiculo.situacao = dadosVeiculo.situacao?.toUpperCase();
+            dadosVeiculo.localAlocacao = dadosVeiculo.localAlocacao?.toUpperCase();
+            dadosVeiculo.observacoes = dadosVeiculo.observacoes?.toUpperCase();
+
+            // 3. Envia o objeto já formatado
             this.veiculoService.salvarVeiculo(dadosVeiculo)
                 .subscribe({
                     next: (response) => {
-                        // Tratar sucesso (Ex: mostrar mensagem, resetar formulário)
                         console.log('Veículo salvo com sucesso!', response);
-                        alert('Veículo cadastrado!');
-                        this.cadastroVeiculoForm.reset(); // Limpa o formulário após o sucesso
+                        //alert('Veículo cadastrado!');
+                        this.cadastroVeiculoForm.reset({ categoria: 'Carro', situacao: 'Ativo' }); // Limpa o formulário após o sucesso
+                        // ATUALIZA A LISTA NA TELA
+                        this.listarVeiculos();
                     },
                     error: (error) => {
-                        // Tratar erro (Ex: mostrar erro para o usuário)
                         console.error('Erro ao salvar veículo:', error);
                         alert('Erro no cadastro. Verifique o console.');
                     }
