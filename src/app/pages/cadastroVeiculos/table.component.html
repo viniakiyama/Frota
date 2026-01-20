@@ -1,5 +1,5 @@
 <form [formGroup]="cadastroVeiculoForm" (ngSubmit)="onSubmit()">
-  <div class="container mt-4">
+  <div class="container-fluid mt-4">
     <h2 class="mb-4">Cadastro de Veículos</h2>
 
     <div class="card shadow-sm mb-5">
@@ -10,15 +10,18 @@
           <div class="row g-3">
             <div class="col-md-4">
               <label class="form-label">Placa</label>
-              <input type="text" class="form-control" formControlName="placa" placeholder="ABC1D23">
+              <input type="text" class="form-control" formControlName="placa" placeholder="ABC1D23" maxlength="7"
+                style="text-transform: uppercase" oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')">
             </div>
             <div class="col-md-4">
               <label class="form-label">Número do Chassi</label>
-              <input type="text" class="form-control" formControlName="chassi">
+              <input type="text" class="form-control" formControlName="chassi" maxlength="17"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
             </div>
             <div class="col-md-4">
               <label class="form-label">RENAVAM</label>
-              <input type="text" class="form-control" formControlName="renavam">
+              <input type="text" class="form-control" formControlName="renavam" maxlength="11"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
             </div>
 
             <div class="col-md-3">
@@ -33,15 +36,15 @@
 
             <div class="col-md-3">
               <label class="form-label">Ano</label>
-              <input type="number" class="form-control" formControlName="ano">
+              <input type="number" class="form-control" formControlName="ano" maxlength="4">
             </div>
             <div class="col-md-3">
               <label class="form-label">Categoria</label>
               <select class="form-control" formControlName="categoria">
-                <option value="Carro">Carro</option>
-                <option value="Moto">Moto</option>
-                <option value="Caminhão">Caminhão</option>
-                <option value="Van">Van</option>
+                <option value="CARRO">Carro</option>
+                <option value="MOTO">Moto</option>
+                <option value="CAMINHÃO">Caminhão</option>
+                <option value="VAN">Van</option>
               </select>
             </div>
 
@@ -52,14 +55,22 @@
             <div class="col-md-4">
               <label class="form-label">Situação</label>
               <select class="form-control" formControlName="situacao">
-                <option value="Ativo">Ativo</option>
-                <option value="Em Manutenção">Em Manutenção</option>
-                <option value="Desativado">Desativado</option>
+                <option value="DISPONIVEL">Disponível</option>
+                <option value="ALUGADO">Alugado</option>
+                <option value="EM MANUTENCAO">Em manutenção</option>
               </select>
             </div>
+
             <div class="col-md-4">
-              <label class="form-label">Local de Alocação</label>
-              <input type="text" class="form-control" formControlName="localAlocacao" placeholder="Ex: Filial SP">
+              <label>Local de Alocação</label>
+              <select formControlName="localAlocacao" class="form-control">
+                <option value="">SELECIONE UM LOCAL</option>
+                <option value="MATRIZ">MATRIZ</option>
+                <option value="FILIAL SÃO PAULO">FILIAL SÃO PAULO</option>
+                <option value="FILIAL RIO DE JANEIRO">FILIAL RIO DE JANEIRO</option>
+                <option value="GARAGEM CENTRAL">GARAGEM CENTRAL</option>
+                <option value="EM MANUTENÇÃO">EM MANUTENÇÃO</option>
+              </select>
             </div>
 
             <div class="col-12">
@@ -93,6 +104,8 @@
             <th>Situação</th>
             <th>Local Alocação</th>
             <th>Observações</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -108,6 +121,16 @@
             <td>{{ v.situacao }}</td>
             <td>{{ v.localAlocacao }}</td>
             <td>{{ v.observacoes }}</td>
+            <td>
+              <button type="button" class="btn btn-warning btn-sm" (click)="prepararEdicao(v)">
+                Editar
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-danger btn-sm" (click)="excluir(v.id)">
+                Excluir
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>

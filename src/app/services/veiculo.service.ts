@@ -15,7 +15,7 @@ export class VeiculoService {
   // Injete o HttpClient no construtor
   constructor(private http: HttpClient) { }
 
-  // Método para enviar os dados de um novo veículo (Requisição POST)
+  // método POST que envia os dados de um novo veículo 
   salvarVeiculo(veiculoData: any): Observable<any> {
     // O método .post() envia o objeto veiculoData para a URL da API
     // e espera uma resposta.
@@ -24,5 +24,15 @@ export class VeiculoService {
 
   obterVeiculos(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl);
+  }
+
+  //método DELETE que exclui os veículos
+  excluirVeiculo(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  // método PUT para atualizar um veículo existente
+  atualizarVeiculo(id: number, veiculoData: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, veiculoData);
   }
 }

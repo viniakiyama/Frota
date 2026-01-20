@@ -12,6 +12,8 @@ import { VeiculoService } from 'app/services/veiculo.service';
 export class TableCadastroVeiculos implements OnInit {
     cadastroVeiculoForm: FormGroup;
 
+    idEmEdicao: number | null = null; // Armazena o ID do veículo sendo editado
+
     veiculos: any[] = [];
 
     constructor(
@@ -47,12 +49,34 @@ export class TableCadastroVeiculos implements OnInit {
         });
     }
 
+    // 1. Função para carregar os dados da linha no formulário
+    prepararEdicao(veiculo: any) {
+        this.idEmEdicao = veiculo.id;
+        this.cadastroVeiculoForm.patchValue(veiculo); // Preenche o form com os dados do objeto
+        window.scrollTo(0, 0); // Sobe a tela para o formulário
+    }
+
+    excluir(id: number) {
+        if (confirm('DESEJA REALMENTE EXCLUIR ESTE VEÍCULO?')) {
+            this.veiculoService.excluirVeiculo(id).subscribe({
+                next: () => {
+                    //alert('VEÍCULO REMOVIDO COM SUCESSO!');
+                    this.listarVeiculos(); // Atualiza a lista na tela
+                },
+                error: (err) => {
+                    console.error('ERRO AO EXCLUIR:', err);
+                    alert('NÃO FOI POSSÍVEL EXCLUIR O VEÍCULO.');
+                }
+            });
+        }
+    }
+
     onSubmit() {
         if (this.cadastroVeiculoForm.valid) {
-            // 1. Pega o objeto com os dados
+            // 1. Pega os dados atuais do formulário
             const dadosVeiculo = this.cadastroVeiculoForm.value;
 
-            // 2. Transforma os campos desejados em Maiúsculo diretamente no objeto (nao tem ano e nem quilometragem aqui porque eles são numericos, nao precisa de upperCase)
+            // 2. Aplica o UpperCase (seu código atual)
             dadosVeiculo.placa = dadosVeiculo.placa?.toUpperCase();
             dadosVeiculo.chassi = dadosVeiculo.chassi?.toUpperCase();
             dadosVeiculo.renavam = dadosVeiculo.renavam?.toUpperCase();
@@ -63,28 +87,43 @@ export class TableCadastroVeiculos implements OnInit {
             dadosVeiculo.localAlocacao = dadosVeiculo.localAlocacao?.toUpperCase();
             dadosVeiculo.observacoes = dadosVeiculo.observacoes?.toUpperCase();
 
-            // 3. Envia o objeto já formatado
-            this.veiculoService.salvarVeiculo(dadosVeiculo)
-                .subscribe({
-                    next: (response) => {
-                        console.log('Veículo salvo com sucesso!', response);
-                        //alert('Veículo cadastrado!');
-                        this.cadastroVeiculoForm.reset({ categoria: 'Carro', situacao: 'Ativo' }); // Limpa o formulário após o sucesso
-                        // ATUALIZA A LISTA NA TELA
-                        this.listarVeiculos();
+            // 3. DECISÃO: EDITAR OU SALVAR?
+            if (this.idEmEdicao) {
+                // --- LÓGICA DE ATUALIZAÇÃO (PUT) ---
+                dadosVeiculo.id = this.idEmEdicao; // O C# precisa do ID dentro do objeto
+
+                this.veiculoService.atualizarVeiculo(this.idEmEdicao, dadosVeiculo).subscribe({
+                    next: () => {
+                        console.log('Veículo atualizado!');
+                        this.resetarAposSucesso();
                     },
                     error: (error) => {
-                        console.error('Erro ao salvar veículo:', error);
-                        alert('Erro no cadastro. Verifique o console.');
+                        console.error('Erro ao atualizar:', error);
+                        alert('Erro na atualização.');
                     }
                 });
-            console.log('Dados do Formulário prontos para envio:', dadosVeiculo);
-            // Próxima etapa: Chamar o VeiculoService para enviar os dados
-            // this.veiculoService.salvarVeiculo(dadosVeiculo).subscribe(...); 
-        } else {
-            console.error('Formulário inválido. Verifique os campos obrigatórios!');
-            // Opcional: Adicionar lógica para marcar campos como 'touched' para exibir erros
+
+            } else {
+                // --- LÓGICA DE CADASTRO NOVO (POST) ---
+                this.veiculoService.salvarVeiculo(dadosVeiculo).subscribe({
+                    next: (response) => {
+                        console.log('Veículo salvo!', response);
+                        this.resetarAposSucesso();
+                    },
+                    error: (error) => {
+                        console.error('Erro ao salvar:', error);
+                        alert('Erro no cadastro.');
+                    }
+                });
+            }
         }
+    }
+
+    // 4. Função auxiliar para limpar tudo e atualizar a tabela
+    resetarAposSucesso() {
+        this.idEmEdicao = null; // Limpa o ID de edição
+        this.cadastroVeiculoForm.reset({ categoria: 'Carro', situacao: 'Ativo' });
+        this.listarVeiculos();
     }
 
 }

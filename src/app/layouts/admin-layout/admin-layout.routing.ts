@@ -4,6 +4,8 @@ import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 
 //tabelas quee inseri
 import { TableCadastroVeiculos } from '../../pages/cadastroVeiculos/table.component';
+import { AluguelComponent } from '../../pages/aluguel/aluguel.component';
+
 import { TableManutencoesErevisoes } from '../../pages/manutencoesErevisoes/table.component';
 import { TableAbastecimentos } from '../../pages/abastecimentos/table.component';
 import { TableTrocaDePecas } from '../../pages/trocaDePecas/table.component';
@@ -19,6 +21,7 @@ import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard', component: DashboardComponent },
     { path: 'cadastroDeVeiculos', component: TableCadastroVeiculos },
+    { path: 'aluguel',           component: AluguelComponent },
     { path: 'manutencoesErevisoes', component: TableManutencoesErevisoes },
     { path: 'abastecimentos', component: TableAbastecimentos },
     { path: 'trocaDepecas', component: TableTrocaDePecas },

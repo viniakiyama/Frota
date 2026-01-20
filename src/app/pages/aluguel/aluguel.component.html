@@ -1,0 +1,92 @@
+<div class="container-fluid mt-4">
+    <div class="card shadow">
+        <div class="card-header">
+            <h4 class="title">REGISTRAR ALUGUEL</h4>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="aluguelForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>SELECIONE O VEÍCULO (DISPONÍVEIS)</label>
+                        <select formControlName="veiculoId" class="form-control">
+                            <option value="">-- SELECIONE --</option>
+                            <option *ngFor="let v of veiculosDisponiveis" [value]="v.id">
+                                {{ v.placa }} - {{ v.modelo }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>MOTORISTA RESPONSÁVEL</label>
+                        <input type="text" formControlName="motorista" class="form-control" placeholder="NOME COMPLETO"
+                            oninput="this.value = this.value.toUpperCase()">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label>DATA E HORA DA TRANSFERÊNCIA</label>
+                        <input type="datetime-local" formControlName="dataHoraTransferencia" class="form-control">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>LOCAL DE ORIGEM</label>
+                        <input type="text" formControlName="localOrigem" class="form-control"
+                            oninput="this.value = this.value.toUpperCase()">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>LOCAL DE DESTINO</label>
+                        <input type="text" formControlName="localDestino" class="form-control"
+                            oninput="this.value = this.value.toUpperCase()">
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-info" [disabled]="!aluguelForm.valid">
+                            SALVAR ALUGUEL E ATUALIZAR STATUS
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row mt-4" *ngIf="veiculosAlugados.length > 0">
+    <div class="col-md-12">
+        <div class="card shadow">
+            <div class="card-header bg-warning">
+                <h4 class="title text-white">VEÍCULOS ATUALMENTE ALUGADOS</h4>
+            </div>
+            <div class="card-body table-responsive">
+                <table class="table table-hover">
+                    <thead class="text-primary">
+                        <th>PLACA</th>
+                        <th>MODELO</th>
+                        <th>MOTORISTA</th>
+                        <th>LOCAL DESTINO</th>
+                        <th>SITUAÇÃO</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let v of veiculosAlugados">
+                            <td>{{ v.placa }}</td>
+                            <td>{{ v.modelo }}</td>
+                            <td>{{ v.motoristaResponsavel}}</td>
+                            <td>{{ v.localAlocacao }}</td>
+                            <td>
+                                <span class="badge badge-danger">ALUGADO</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4" *ngIf="veiculosAlugados.length === 0">
+    <div class="col-md-12 text-center">
+        <p class="text-muted italic">Nenhum veículo alugado no momento.</p>
+    </div>
+</div>

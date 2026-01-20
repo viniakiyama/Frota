@@ -11,6 +11,8 @@ import { UserComponent } from '../../pages/user/user.component';
 
 //tabelas que inseri
 import { TableCadastroVeiculos } from '../../pages/cadastroVeiculos/table.component';
+import { AluguelComponent } from '../../pages/aluguel/aluguel.component';
+
 import { TableManutencoesErevisoes } from '../../pages/manutencoesErevisoes/table.component';
 import { TableAbastecimentos } from '../../pages/abastecimentos/table.component';
 import { TableTrocaDePecas } from '../../pages/trocaDePecas/table.component';
@@ -44,6 +46,7 @@ import { MatOptionModule } from '@angular/material/core';
     DashboardComponent,
     UserComponent,
     TableCadastroVeiculos,
+    AluguelComponent,
     TableManutencoesErevisoes,
     TableAbastecimentos,
     TableTrocaDePecas,
