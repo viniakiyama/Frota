@@ -10,7 +10,7 @@ import { Observable } from 'rxjs'; // Usado para lidar com resultados assíncron
 export class VeiculoService {
 
   // Defina a URL base da sua API aqui
-  private apiUrl = 'http://localhost:5000/api/veiculos'; // CORRETO
+  private apiUrl = 'http://localhost:5050/api/veiculos'; // CORRETO
 
   // Injete o HttpClient no construtor
   constructor(private http: HttpClient) { }

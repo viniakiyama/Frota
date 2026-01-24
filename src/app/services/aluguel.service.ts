@@ -8,7 +8,7 @@ import { environment } from 'environments/environment';
 })
 export class AluguelService {
 
-    private apiUrl = 'http://localhost:5000/api/alugueis';
+    private apiUrl = 'http://localhost:5050/api/alugueis';
 
     constructor(private http: HttpClient) { }
 

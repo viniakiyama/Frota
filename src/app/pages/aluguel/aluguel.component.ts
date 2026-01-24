@@ -24,7 +24,7 @@ export class AluguelComponent implements OnInit {
             veiculoId: ['', Validators.required],
             motorista: ['', Validators.required],
             // 1. AJUSTADO: Nome deve ser dataHoraTransferencia para casar com o C#
-            dataHoraTransferencia: [this.getDataAtual(), Validators.required], 
+            dataHoraTransferencia: [this.getDataAtual(), Validators.required],
             localOrigem: ['', Validators.required],
             localDestino: ['', Validators.required]
         });
@@ -33,18 +33,21 @@ export class AluguelComponent implements OnInit {
     }
 
     atualizarListas() {
+        // Busca os disponíveis (isso continua igual)
         this.veiculoService.obterVeiculos().subscribe({
             next: (dados) => {
-                // 2. FILTRO: Removido o acento para bater com seu cadastro 'DISPONIVEL'
                 this.veiculosDisponiveis = dados.filter(v =>
                     v.situacao && v.situacao.toUpperCase().trim() === 'DISPONIVEL'
                 );
+            }
+        });
 
-                this.veiculosAlugados = dados.filter(v =>
-                    v.situacao && v.situacao.toUpperCase().trim() === 'ALUGADO'
-                );
+        // CORREÇÃO: Busca os alugados do AluguelService (onde tem o motorista!)
+        this.aluguelService.obterHistorico().subscribe({ // Verifique se o nome é 'obterAlugueis' na sua service
+            next: (dados) => {
+                this.veiculosAlugados = dados; // Aqui vem o JSON que vimos no Swagger com o motorista!
             },
-            error: (err) => console.error('Erro ao atualizar listas:', err)
+            error: (err) => console.error('Erro ao buscar aluguéis:', err)
         });
     }
 
@@ -62,6 +65,7 @@ export class AluguelComponent implements OnInit {
             const payload = {
                 ...dados,
                 placa: veiculoSelecionado ? veiculoSelecionado.placa : '',
+                modelo: veiculoSelecionado ? veiculoSelecionado.modelo : '',
                 motorista: dados.motorista.toUpperCase(),
                 localOrigem: dados.localOrigem.toUpperCase(),
                 localDestino: dados.localDestino.toUpperCase()
