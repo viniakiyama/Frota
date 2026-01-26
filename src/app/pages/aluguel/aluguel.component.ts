@@ -23,7 +23,6 @@ export class AluguelComponent implements OnInit {
         this.aluguelForm = this.fb.group({
             veiculoId: ['', Validators.required],
             motorista: ['', Validators.required],
-            // 1. AJUSTADO: Nome deve ser dataHoraTransferencia para casar com o C#
             dataHoraTransferencia: [this.getDataAtual(), Validators.required],
             localOrigem: ['', Validators.required],
             localDestino: ['', Validators.required]
@@ -33,20 +32,20 @@ export class AluguelComponent implements OnInit {
     }
 
     atualizarListas() {
-        // Busca os disponíveis (isso continua igual)
         this.veiculoService.obterVeiculos().subscribe({
             next: (dados) => {
+                // Filtramos apenas para mostrar quem está 'DISPONIVEL'
+                // O filtro de 'ativo' saiu porque se o carro foi excluído, ele nem vem do banco.
                 this.veiculosDisponiveis = dados.filter(v =>
                     v.situacao && v.situacao.toUpperCase().trim() === 'DISPONIVEL'
                 );
-            }
+            },
+            error: (err) => console.error('Erro ao buscar veículos:', err)
         });
 
-        // CORREÇÃO: Busca os alugados do AluguelService (onde tem o motorista!)
-        this.aluguelService.obterHistorico().subscribe({ // Verifique se o nome é 'obterAlugueis' na sua service
-            next: (dados) => {
-                this.veiculosAlugados = dados; // Aqui vem o JSON que vimos no Swagger com o motorista!
-            },
+        // Busca o histórico de alugados
+        this.aluguelService.obterHistorico().subscribe({
+            next: (dados) => this.veiculosAlugados = dados,
             error: (err) => console.error('Erro ao buscar aluguéis:', err)
         });
     }
@@ -69,13 +68,11 @@ export class AluguelComponent implements OnInit {
                 motorista: dados.motorista.toUpperCase(),
                 localOrigem: dados.localOrigem.toUpperCase(),
                 localDestino: dados.localDestino.toUpperCase()
-                // Aqui o campo dataHoraTransferencia já vai automático pelo '...dados'
             };
 
             this.aluguelService.registrarAluguel(payload).subscribe({
                 next: (res) => {
                     alert('Aluguel registrado com sucesso!');
-                    // 3. AJUSTADO: Resetando com o nome novo do campo
                     this.aluguelForm.reset({ dataHoraTransferencia: this.getDataAtual() });
                     this.atualizarListas();
                 },
