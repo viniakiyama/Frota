@@ -71,6 +71,23 @@ export class TableCadastroVeiculos implements OnInit {
         }
     }
 
+
+    desativarVeiculo(veiculo: any) {
+        if (confirm(`Deseja realmente desativar o veículo ${veiculo.placa}?`)) {
+            veiculo.situacao = "Inativo";
+
+            // 1. Aqui usamos 'atualizarVeiculo' conforme sua service
+            // Passamos o ID e o objeto completo
+            this.veiculoService.atualizarVeiculo(veiculo.id, veiculo).subscribe(() => {
+                alert("Veículo desativado com sucesso!");
+
+                // 2. Aqui usamos 'obterVeiculos' conforme sua service
+                this.listarVeiculos();
+            });
+        }
+    }
+
+
     onSubmit() {
         if (this.cadastroVeiculoForm.valid) {
             // 1. Pega os dados atuais do formulário

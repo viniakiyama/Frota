@@ -1,0 +1,77 @@
+<div class="container mt-4">
+    <h2>Abastecimento</h2>
+
+    <div class="card p-3 mb-4 shadow-sm">
+        <div class="row g-3">
+            <div class="col-md-3">
+                <label class="form-label fw-bold">Veículo (Placa)</label>
+                <select class="form-control" [(ngModel)]="novoAbastecimento.veiculoId" (change)="aoSelecionarVeiculo()">
+                    <option [ngValue]="null">Selecione o Veículo...</option>
+                    <option *ngFor="let v of veiculos" [ngValue]="v.id">
+                        {{ v.placa }} - {{ v.modelo }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label fw-bold">Tipo de Combustível</label>
+                <select class="form-control" [(ngModel)]="novoAbastecimento.tipoCombustivel">
+                    <option value="">Selecione...</option>
+                    <option *ngFor="let t of tiposCombustivel" [value]="t">{{t}}</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label fw-bold">Posto</label>
+                <select class="form-control" [(ngModel)]="novoAbastecimento.posto">
+                    <option value="">Selecione...</option>
+                    <option *ngFor="let p of postosGasolina" [value]="p">{{p}}</option>
+                </select>
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label fw-bold">Quilometragem Atual</label>
+                <input type="number" class="form-control" [(ngModel)]="novoAbastecimento.quilometragem">
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label fw-bold">Litros</label>
+                <input type="number" class="form-control" [(ngModel)]="novoAbastecimento.litros">
+            </div>
+
+            <div class="col-md-3">
+                <label class="form-label fw-bold">Valor Total (R$)</label>
+                <input type="number" class="form-control" [(ngModel)]="novoAbastecimento.valorTotal">
+            </div>
+
+            <div class="col-md-6 d-flex align-items-end">
+                <button (click)="salvar()" class="btn btn-primary w-100">Registrar Abastecimento</button>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Data</th>
+                <th>Veículo</th>
+                <th>Posto</th>
+                <th>Tipo</th>
+                <th>Litros</th>
+                <th>Total</th>
+                <th>KM</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let h of historico">
+                <td>{{ h.dataHora | date:'dd/MM/yyyy HH:mm' }}</td>
+                <td>{{ h.veiculo?.placa }}</td>
+                <td>{{ h.posto }}</td>
+                <td>{{ h.tipoCombustivel }}</td>
+                <td>{{ h.litros }}L</td>
+                <td>{{ h.valorTotal | currency:'BRL' }}</td>
+                <td>{{ h.quilometragem }} KM</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

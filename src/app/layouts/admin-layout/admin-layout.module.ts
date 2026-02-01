@@ -12,19 +12,9 @@ import { MatOptionModule } from '@angular/material/core';
 import { TableCadastroVeiculos } from '../../pages/cadastroVeiculos/table.component';
 import { AluguelComponent } from '../../pages/aluguel/aluguel.component';
 import { ManutencoesRevisoesComponent } from 'app/pages/manutencoes-revisoes/manutencoes-revisoes.component';
-//import { FormsModule } from '@angular/forms';
-//import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
-//import { UserComponent } from '../../pages/user/user.component';
-//tabelas que inseri
-//import { TableManutencoesErevisoes } from '../../pages/manutencoesErevisoes/table.component';
-//import { TableAbastecimentos } from '../../pages/abastecimentos/table.component';
-//import { TableTrocaDePecas } from '../../pages/trocaDePecas/table.component';
-//import { TableIndicadoresEalertas } from '../../pages/indicadoresEalertas/table.component';
-//import { TableUsuariosEperfis } from '../../pages/usuariosEperfis/table.component';
-//import { IconsComponent } from '../../pages/icons/icons.component';
-//import { MapsComponent } from '../../pages/maps/maps.component';
-//import { NotificationsComponent } from '../../pages/notifications/notifications.component';
-//import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
+import { EstoqueCadastroComponent } from 'app/pages/estoque-cadastro/estoque-cadastro.component';
+import { TrocaPecaComponent } from 'app/pages/troca-peca/troca-peca.component';
+import { AbastecimentoComponent } from 'app/pages/abastecimento/abastecimento.component';
 
 @NgModule({
   imports: [
@@ -41,17 +31,9 @@ import { ManutencoesRevisoesComponent } from 'app/pages/manutencoes-revisoes/man
     TableCadastroVeiculos,
     AluguelComponent,
     ManutencoesRevisoesComponent,
-    //DashboardComponent,
-    //UserComponent,
-    //TableManutencoesErevisoes,
-    //TableAbastecimentos,
-    //TableTrocaDePecas,
-    //TableIndicadoresEalertas,
-    //TableUsuariosEperfis,
-    //UpgradeComponent,
-    //IconsComponent,
-    //MapsComponent,
-    //NotificationsComponent,
+    EstoqueCadastroComponent,
+    TrocaPecaComponent,
+    AbastecimentoComponent
   ]
 })
 

@@ -1,0 +1,66 @@
+<div class="container mt-4">
+  <h2>Troca de peças</h2>
+
+  <div class="card p-3 mb-4">
+    <div class="row g-3">
+      <div class="col-md-3">
+        <label class="form-label fw-bold">Veículo</label>
+        <select class="form-control" [(ngModel)]="novaTroca.veiculoId" (change)="aoSelecionarVeiculo()">
+          <option [ngValue]="null">Selecione o Veículo...</option>
+          <option *ngFor="let v of veiculos" [value]="v.id">{{ v.modelo }} - {{ v.placa }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label fw-bold">Peça Trocada</label>
+        <select class="form-control" [(ngModel)]="novaTroca.pecaId" (change)="aoSelecionarPeca()">
+          <option [ngValue]="null">Selecione a Peça...</option>
+          <option *ngFor="let p of pecas" [ngValue]="p.id">{{ p.nome }}</option>
+        </select>
+      </div>
+
+      <div class="col-md-2">
+        <label class="form-label fw-bold">KM Atual</label>
+        <input type="number" class="form-control" [(ngModel)]="novaTroca.quilometragemNoMomento">
+      </div>
+
+      <div class="col-md-2">
+        <label class="form-label fw-bold">Custo R$</label>
+        <input type="number" class="form-control" [(ngModel)]="novaTroca.valorCusto">
+      </div>
+
+      <div class="col-md-10">
+        <label class="form-label fw-bold">Motivo da Substituição</label>
+        <input type="text" class="form-control" [(ngModel)]="novaTroca.motivoSubstituicao"
+          placeholder="Ex: Desgaste natural, quebra em serviço...">
+      </div>
+
+      <div class="col-md-2 d-flex align-items-end">
+        <button (click)="salvar()" class="btn btn-success w-100">Registrar Troca</button>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-hover mt-3">
+    <thead class="table-dark">
+      <tr>
+        <th>Data</th>
+        <th>Veículo</th>
+        <th>Peça</th>
+        <th>KM</th>
+        <th>Motivo</th>
+        <th>Custo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let t of historico">
+        <td>{{ t.dataTroca | date:'dd/MM/yyyy' }}</td>
+        <td>{{ t.veiculoNome }}</td>
+        <td>{{ t.pecaNome }}</td>
+        <td>{{ t.quilometragemNoMomento }} KM</td>
+        <td>{{ t.motivoSubstituicao }}</td>
+        <td>{{ t.valorCusto | currency:'BRL' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

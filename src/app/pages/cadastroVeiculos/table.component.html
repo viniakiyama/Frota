@@ -1,93 +1,85 @@
 <form [formGroup]="cadastroVeiculoForm" (ngSubmit)="onSubmit()">
   <div class="container-fluid mt-4">
     <h2 class="mb-4">Cadastro de Veículos</h2>
-
     <div class="card shadow-sm mb-5">
       <div class="card-header bg-primary text-white">Cadastrar Novo Veículo</div>
       <div class="card-body">
-        <form [formGroup]="cadastroVeiculoForm" (ngSubmit)="onSubmit()">
-
-          <div class="row g-3">
-            <div class="col-md-4">
-              <label class="form-label">Placa</label>
-              <input type="text" class="form-control" formControlName="placa" placeholder="ABC1D23" maxlength="7"
-                style="text-transform: uppercase" oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')">
-            </div>
-            <div class="col-md-4">
-              <label class="form-label">Número do Chassi</label>
-              <input type="text" class="form-control" formControlName="chassi" maxlength="17"
-                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-            </div>
-            <div class="col-md-4">
-              <label class="form-label">RENAVAM</label>
-              <input type="text" class="form-control" formControlName="renavam" maxlength="11"
-                oninput="this.value = this.value.replace(/[^0-9]/g, '')">
-            </div>
-
-            <div class="col-md-3">
-              <label class="form-label">Modelo</label>
-              <input type="text" class="form-control" formControlName="modelo">
-            </div>
-
-            <div class="col-md-3">
-              <label class="form-label">Marca</label>
-              <input type="text" class="form-control" formControlName="marca">
-            </div>
-
-            <div class="col-md-3">
-              <label class="form-label">Ano</label>
-              <input type="number" class="form-control" formControlName="ano" maxlength="4">
-            </div>
-            <div class="col-md-3">
-              <label class="form-label">Categoria</label>
-              <select class="form-control" formControlName="categoria">
-                <option value="CARRO">Carro</option>
-                <option value="MOTO">Moto</option>
-                <option value="CAMINHÃO">Caminhão</option>
-                <option value="VAN">Van</option>
-              </select>
-            </div>
-
-            <div class="col-md-4">
-              <label class="form-label">KM Atual</label>
-              <input type="number" class="form-control" formControlName="quilometragemAtual">
-            </div>
-            <div class="col-md-4">
-              <label class="form-label">Situação</label>
-              <select class="form-control" formControlName="situacao">
-                <option value="DISPONIVEL">Disponível</option>
-                <option value="ALUGADO">Alugado</option>
-                <option value="EM MANUTENCAO">Em manutenção</option>
-              </select>
-            </div>
-
-            <div class="col-md-4">
-              <label>Local de Alocação</label>
-              <select formControlName="localAlocacao" class="form-control">
-                <option value="">SELECIONE UM LOCAL</option>
-                <option value="MATRIZ">MATRIZ</option>
-                <option value="FILIAL SÃO PAULO">FILIAL SÃO PAULO</option>
-                <option value="FILIAL RIO DE JANEIRO">FILIAL RIO DE JANEIRO</option>
-                <option value="GARAGEM CENTRAL">GARAGEM CENTRAL</option>
-                <option value="EM MANUTENÇÃO">EM MANUTENÇÃO</option>
-              </select>
-            </div>
-
-            <div class="col-12">
-              <label class="form-label">Observações</label>
-              <textarea class="form-control" formControlName="observacoes" rows="2"></textarea>
-            </div>
-
-            <div class="col-12 text-end mt-4">
-              <button type="submit" class="btn btn-success px-5" [disabled]="!cadastroVeiculoForm.valid">
-                Salvar Veículo
-              </button>
-            </div>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">Placa</label>
+            <input type="text" class="form-control" formControlName="placa" placeholder="ABC1D23" maxlength="7"
+              style="text-transform: uppercase" oninput="this.value = this.value.replace(/[^a-zA-Z0-9]/g, '')">
           </div>
-        </form>
+          <div class="col-md-4">
+            <label class="form-label">Número do Chassi</label>
+            <input type="text" class="form-control" formControlName="chassi" maxlength="17"
+              oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">RENAVAM</label>
+            <input type="text" class="form-control" formControlName="renavam" maxlength="11"
+              oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Modelo</label>
+            <input type="text" class="form-control" formControlName="modelo">
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">Marca</label>
+            <input type="text" class="form-control" formControlName="marca">
+          </div>
+
+          <div class="col-md-3">
+            <label class="form-label">Ano</label>
+            <input type="number" class="form-control" formControlName="ano" maxlength="4">
+          </div>
+          <div class="col-md-3">
+            <label class="form-label">Categoria</label>
+            <select class="form-control" formControlName="categoria">
+              <option value="CARRO">Carro</option>
+              <option value="MOTO">Moto</option>
+              <option value="CAMINHÃO">Caminhão</option>
+              <option value="VAN">Van</option>
+            </select>
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">KM Atual</label>
+            <input type="number" class="form-control" formControlName="quilometragemAtual">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label">Situação</label>
+            <select class="form-control" formControlName="situacao">
+              <option value="DISPONIVEL">Disponível</option>
+              <option value="ALUGADO">Alugado</option>
+              <option value="EM MANUTENCAO">Em manutenção</option>
+              <option value="INATIVO">Inativo</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label>Local de Alocação</label>
+            <select formControlName="localAlocacao" class="form-control">
+              <option value="">SELECIONE UM LOCAL</option>
+              <option value="MATRIZ">MATRIZ</option>
+              <option value="FILIAL SÃO PAULO">FILIAL SÃO PAULO</option>
+              <option value="FILIAL RIO DE JANEIRO">FILIAL RIO DE JANEIRO</option>
+              <option value="GARAGEM CENTRAL">GARAGEM CENTRAL</option>
+              <option value="EM MANUTENÇÃO">EM MANUTENÇÃO</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <label class="form-label">Observações</label>
+            <textarea class="form-control" formControlName="observacoes" rows="2"></textarea>
+          </div>
+          <div class="col-12 text-end mt-4">
+            <button type="submit" class="btn btn-success px-5" [disabled]="!cadastroVeiculoForm.valid">
+              Salvar Veículo
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-
     <h3 class="mb-3">Lista de Veículos</h3>
     <div class="table-responsive">
       <table class="table table-hover table-bordered shadow-sm">
@@ -106,6 +98,7 @@
             <th>Observações</th>
             <th></th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -118,7 +111,10 @@
             <td>{{ v.ano }}</td>
             <td>{{ v.categoria }}</td>
             <td>{{ v.quilometragemAtual }}</td>
-            <td>{{ v.situacao }}</td>
+            <td [style.color]="v.situacao === 'INATIVO' ? 'red' : 'inherit'"
+              [style.font-weight]="v.situacao === 'INATIVO' ? 'bold' : 'normal'">
+              {{ v.situacao }}
+            </td>
             <td>{{ v.localAlocacao }}</td>
             <td>{{ v.observacoes }}</td>
             <td>
@@ -131,78 +127,14 @@
                 Excluir
               </button>
             </td>
+            <td>
+              <button *ngIf="v.situacao !== 'INATIVO'" class="btn btn-dark btn-sm" (click)="desativarVeiculo(v)">
+                Desativar
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-  <!--
-  <div class="row">
-
-    <div class="col-md-6">
-      <label>Placa</label>
-      <input type="text" class="form-control" formControlName="placa">
-
-      <label>Marca</label>
-      <select class="form-control" formControlName="marca">
-        <option value="Fiat">Fiat</option>
-        <option value="Volkswagen">Volkswagen</option>
-        <option value="Chevrolet">Chevrolet</option>
-        <option value="Toyota">Toyota</option>
-        <option value="Hyundai">Hyundai</option>
-        <option value="Jeep">Jeep</option>
-        <option value="Renault">Renault</option>
-        <option value="Honda">Honda</option>
-        <option value="Nissan">Nissan</option>
-        <option value="Byd">BYD</option>
-      </select>
-
-      <label>Modelo</label>
-      <input type="text" class="form-control" formControlName="modelo" placeholder="Ex: Uno 1.0, T-CROSS">
-
-      <label>Ano</label>
-      <input type="number" formControlName="ano" class="form-control" placeholder="Ex: 2024">
-
-      <label>Categoria</label>
-      <select class="form-control" formControlName="categoria">
-        <option value="carro">Carro</option>
-        <option value="moto">Moto</option>
-      </select>
-    </div>
-
-    <div class="col-md-6">
-      <label>Quilometragem Atual</label>
-      <input type="number" formControlName="quilometragemAtual" class="form-control" placeholder="Ex: 50674">
-
-      <label>Situação</label>
-      <select class="form-control" formControlName="situacao">
-        <option value="ativo">Ativo</option>
-        <option value="inativo">Inativo</option>
-      </select>
-
-      <label>Local de Alocação</label>
-      <select class="form-control" formControlName="localAlocacao">
-        <option value="SP">São Paulo</option>
-        <option value="MG">Minas Gerais</option>
-      </select>
-
-      <label>Motorista Responsável</label>
-      <input type="text" class="form-control" formControlName="motoristaResponsavel">
-
-      <label>Data de Aquisição</label>
-      <input type="date" class="form-control" formControlName="dataAquisicao">
-
-      <label>Valor de Aquisição</label>
-      <input type="number" formControlName="valorAquisicao" class="form-control" placeholder="Ex: 135000">
-    </div>
-
-  </div>
-
-  <label>Observações</label>
-  <textarea class="form-control" formControlName="observacoes"></textarea>
-
-  <button class="btn btn-primary mt-3" type="submit">
-    Salvar Cadastro de Veículo
-  </button>
--->
 </form>

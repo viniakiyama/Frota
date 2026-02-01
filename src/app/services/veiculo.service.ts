@@ -31,6 +31,10 @@ export class VeiculoService {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 
+  resetTotal(): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/reset-total`);
+  }
+
   // método PUT para atualizar um veículo existente
   atualizarVeiculo(id: number, veiculoData: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/${id}`, veiculoData);

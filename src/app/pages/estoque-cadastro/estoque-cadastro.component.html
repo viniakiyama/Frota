@@ -1,0 +1,45 @@
+<div class="container mt-4">
+  <h2 class="mb-4">📦 Estoque de Peças</h2>
+
+<div class="card p-3 mb-4">
+  <div class="row g-2">
+    <div class="col-md-4">
+      <label class="form-label fw-bold">Nome da Peça</label>
+      <input type="text" [(ngModel)]="novaPeca.nome" name="nome" class="form-control" placeholder="Ex: Pastilha de Freio">
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label fw-bold">Código de Estoque</label>
+      <input type="text" [(ngModel)]="novaPeca.codigoEstoque" name="codigoEstoque" class="form-control" placeholder="Ex: FRM-001">
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label fw-bold">Valor Unitário</label>
+      <input type="number" [(ngModel)]="novaPeca.valor" name="valor" class="form-control" placeholder="0,00">
+    </div>
+
+    <div class="col-md-2 d-flex align-items-end">
+      <button (click)="salvar()" class="btn btn-primary w-100">
+        <i class="fa fa-plus"></i> Cadastrar
+      </button>
+    </div>
+  </div>
+</div>
+
+  <table class="table table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>Valor</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of listaPecas">
+        <td>{{ p.codigoEstoque }}</td>
+        <td>{{ p.nome }}</td>
+        <td>{{ p.valor | currency:'BRL' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

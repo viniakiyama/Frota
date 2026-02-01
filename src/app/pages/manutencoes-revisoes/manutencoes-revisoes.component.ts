@@ -41,7 +41,19 @@ export class ManutencoesRevisoesComponent implements OnInit {
       error: (err) => console.error('Erro ao carregar veículos', err)
     });
 
+    this.carregarVeiculos();
     this.carregarHistorico();
+  }
+
+  carregarVeiculos() {
+    this.veiculoService.obterVeiculos().subscribe({
+      next: (dados) => {
+        // Como você apaga do banco, basta receber os dados diretos.
+        // Se o veículo sumiu do banco, ele não virá mais nesta lista.
+        this.listaVeiculos = dados;
+      },
+      error: (err) => console.error('Erro ao carregar veículos', err)
+    });
   }
 
   // Método para carregar a lista de histórico

@@ -1,7 +1,7 @@
 <div class="container mt-4">
     <div class="card shadow">
         <div class="card-header bg-primary text-white">
-            <h3 class="mb-0">Registrar Manutenção / Revisão (RN003)</h3>
+            <h3 class="mb-0">Registrar Revisão</h3>
         </div>
         <div class="card-body">
             <form [formGroup]="formManutencao" (ngSubmit)="salvarManutencao()">
@@ -78,24 +78,26 @@
         <table class="table table-striped table-bordered shadow-sm">
             <thead class="table-dark">
                 <tr>
+                    <th>Placa</th>
                     <th>Data</th>
-                    <th>Veículo (Placa)</th>
-                    <th>Tipo</th>
                     <th>KM no Momento</th>
                     <th>Próxima Revisão (KM)</th>
-                    <th>Valor do Serviço</th>
+                    <th>Tipo</th>
                     <th>Oficina/Local</th>
+                    <th>Valor Total</th>
+                    <th>Observações</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let m of listaManutencoes">
+                    <td>{{ m.veiculo?.placa }}</td>
                     <td>{{ m.dataManutencao | date:'dd/MM/yyyy' }}</td>
-                    <td>{{ m.veiculoId }}</td>
-                    <td>{{ m.tipo }}</td>
                     <td>{{ m.quilometragem }} KM</td>
                     <td>{{ m.proximaRevisaoKm }} KM</td>
+                    <td>{{ m.tipo }}</td>
+                    <td>{{m.oficinaResponsavel}}</td>
                     <td>{{ m.valorServico | currency:'BRL' }}</td>
-                    <td>{{ m.oficina }}</td>
+                    <td>{{ m.itensSubstituidos }}</td>
                 </tr>
             </tbody>
         </table>
