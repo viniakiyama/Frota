@@ -6,7 +6,8 @@ import { Location } from '@angular/common';
 @Component({
   moduleId: module.id,
   selector: 'navbar-cmp',
-  templateUrl: 'navbar.component.html'
+  templateUrl: 'navbar.component.html',
+  styleUrls: ['navbar.component.scss']
 })
 
 export class NavbarComponent implements OnInit {
@@ -105,5 +106,12 @@ export class NavbarComponent implements OnInit {
     }
 
   }
+
+  //array de notificações
+  public notificacoes = [
+    { mensagem: '🚨 Veículo com manutenção atrasada', link: '/manutencao' },
+    { mensagem: '⛽ Novo abastecimento registrado', link: '/abastecimentos' },
+    { mensagem: '📅 Revisão agendada para amanhã', link: '/revisoes' }
+  ];
 
 }

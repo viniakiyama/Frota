@@ -37,7 +37,7 @@ export class SidebarComponent implements OnInit {
         const todasAsRotas = [
             { path: '/cadastroDeVeiculos', title: 'Veículos', icon: 'transport_automotive', class: '', cargos: ['Admin', 'Gestor de Frota', 'Operacional'] },
             { path: '/aluguel', title: 'Aluguel', icon: 'shopping_shop', class: '', cargos: ['Admin', 'Gestor de Frota'] },
-            { path: '/manutencoes-revisoes', title: 'Manutenções', icon: 'ui-2_settings-90', class: '', cargos: ['Admin', 'Gestor de Frota'] },
+            { path: '/manutencoes-revisoes', title: 'Manutenções e Revisões', icon: 'ui-2_settings-90', class: '', cargos: ['Admin', 'Gestor de Frota'] },
             { path: '/estoque', title: 'Estoque', icon: 'design_app', class: '', cargos: ['Admin'] },
             { path: '/troca-peca', title: 'Troca de Peça', icon: 'loader_gear', class: '', cargos: ['Admin'] },
             { path: '/abastecimento', title: 'Abastecimento', icon: 'location_map-big', class: '', cargos: ['Admin', 'Operacional'] },

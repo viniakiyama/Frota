@@ -38,6 +38,36 @@
           </a>
         </li>
 
+        <li class="nav-item dropdown" ngbDropdown>
+          <a class="nav-link bell-link" ngbDropdownToggle id="navbarDropdownMenuLink">
+
+            <i class="nc-icon nc-bell-55"></i>
+
+            <span *ngIf="notificacoes.length > 0" class="notification-badge">
+              {{ notificacoes.length }}
+            </span>
+
+            <p class="d-lg-none d-md-block" style="margin-left: 5px;">
+              Notificações
+            </p>
+          </a>
+
+          <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right notification-menu"
+            aria-labelledby="navbarDropdownMenuLink">
+            <h6 class="dropdown-header">Alertas do Sistema</h6>
+
+            <a *ngFor="let item of notificacoes" class="dropdown-item" [routerLink]="item.link">
+              {{ item.mensagem }}
+            </a>
+
+            <div *ngIf="notificacoes.length === 0" class="dropdown-item text-muted justify-content-center">
+              Nenhuma notificação nova
+            </div>
+
+          
+          </div>
+        </li>
+
         <li class="nav-item">
           <a class="nav-link text-danger" (click)="logout()"
             style="cursor: pointer; display: flex; align-items: center;">
