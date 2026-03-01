@@ -1,0 +1,63 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Novo Cadastro</h4>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="registroForm" (ngSubmit)="cadastrar()">
+
+                        <div class="mb-3">
+                            <label>Nome Completo</label>
+                            <input type="text" class="form-control" formControlName="nomeCompleto">
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Nome de Usuário (Login)</label>
+                            <input type="text" class="form-control" formControlName="username">
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Cargo</label>
+                            <select class="form-control" formControlName="cargo">
+                                <option value="Admin">Admin</option>
+                                <option value="Gestor de Frota">Gestor de Frota</option>
+                                <option value="Operacional">Operacional</option>
+                            </select>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label>Senha</label>
+                                <input type="password" class="form-control" formControlName="senha">
+
+                                <div *ngIf="registroForm.get('senha').touched && registroForm.get('senha').errors?.['minlength']"
+                                    class="text-danger small">
+                                    A senha deve ter pelo menos 6 caracteres.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label>Confirme a Senha</label>
+                                <input type="password" class="form-control" formControlName="confirmarSenha">
+
+                                <div *ngIf="registroForm.get('confirmarSenha').touched && registroForm.hasError('notSame')"
+                                    class="text-danger small">
+                                    As senhas não coincidem.
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-success w-100" [disabled]="registroForm.invalid">
+                            Criar Conta
+                        </button>
+
+                        <div class="text-center mt-3">
+                            <a routerLink="/login">Já tem uma conta? Faça login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

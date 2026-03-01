@@ -60,7 +60,6 @@ export class TableCadastroVeiculos implements OnInit {
         if (confirm('DESEJA REALMENTE EXCLUIR ESTE VEÍCULO?')) {
             this.veiculoService.excluirVeiculo(id).subscribe({
                 next: () => {
-                    //alert('VEÍCULO REMOVIDO COM SUCESSO!');
                     this.listarVeiculos(); // Atualiza a lista na tela
                 },
                 error: (err) => {

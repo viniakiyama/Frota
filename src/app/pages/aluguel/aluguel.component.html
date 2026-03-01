@@ -27,15 +27,28 @@
                         <label>DATA E HORA DA TRANSFERÊNCIA</label>
                         <input type="datetime-local" formControlName="dataHoraTransferencia" class="form-control">
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <label>LOCAL DE ORIGEM</label>
-                        <input type="text" formControlName="localOrigem" class="form-control"
-                            oninput="this.value = this.value.toUpperCase()">
+                    <div class="col-md-4">
+                        <label class="form-label">Local de Origem</label>
+                        <select class="form-control" formControlName="localOrigem">
+                            <option value="">SELECIONE UM LOCAL</option>
+                            <option value="MATRIZ">MATRIZ</option>
+                            <option value="FILIAL SÃO PAULO">FILIAL SÃO PAULO</option>
+                            <option value="FILIAL RIO DE JANEIRO">FILIAL RIO DE JANEIRO</option>
+                            <option value="GARAGEM CENTRAL">GARAGEM CENTRAL</option>
+                            <option value="EM MANUTENÇÃO">EM MANUTENÇÃO</option>
+                        </select>
                     </div>
-                    <div class="col-md-4 mb-3">
-                        <label>LOCAL DE DESTINO</label>
-                        <input type="text" formControlName="localDestino" class="form-control"
-                            oninput="this.value = this.value.toUpperCase()">
+
+                    <div class="col-md-4">
+                        <label class="form-label">Local de Destino</label>
+                        <select class="form-control" formControlName="localDestino">
+                            <option value="">SELECIONE UM LOCAL</option>
+                            <option value="MATRIZ">MATRIZ</option>
+                            <option value="FILIAL SÃO PAULO">FILIAL SÃO PAULO</option>
+                            <option value="FILIAL RIO DE JANEIRO">FILIAL RIO DE JANEIRO</option>
+                            <option value="GARAGEM CENTRAL">GARAGEM CENTRAL</option>
+                            <option value="EM MANUTENÇÃO">EM MANUTENÇÃO</option>
+                        </select>
                     </div>
                 </div>
 

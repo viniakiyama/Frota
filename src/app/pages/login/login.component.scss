@@ -1,0 +1,28 @@
+/* No login.component.scss */
+
+.loading-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 5px;
+    width: 100%;
+    background-color: #00d0ff;
+    z-index: 9999;
+    animation: loading-animation 1.5s infinite linear;
+    transform-origin: 0% 50%;
+}
+
+@keyframes loading-animation {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.card-disabled {
+    opacity: 0.8;
+    pointer-events: none;
+}

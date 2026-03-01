@@ -66,8 +66,8 @@ export class AluguelComponent implements OnInit {
                 placa: veiculoSelecionado ? veiculoSelecionado.placa : '',
                 modelo: veiculoSelecionado ? veiculoSelecionado.modelo : '',
                 motorista: dados.motorista.toUpperCase(),
-                localOrigem: dados.localOrigem.toUpperCase(),
-                localDestino: dados.localDestino.toUpperCase()
+                localOrigem: ['', Validators.required],
+                localDestino: ['', Validators.required],
             };
 
             this.aluguelService.registrarAluguel(payload).subscribe({
