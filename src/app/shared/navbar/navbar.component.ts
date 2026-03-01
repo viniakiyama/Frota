@@ -2,6 +2,7 @@ import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/co
 import { ROUTES } from '../../sidebar/sidebar.component';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { AlertaService } from '../../services/alerta.service';
 
 @Component({
   moduleId: module.id,
@@ -16,6 +17,7 @@ export class NavbarComponent implements OnInit {
   private nativeElement: Node;
   private toggleButton;
   private sidebarVisible: boolean;
+  public notificacoes: any[] = [];
 
   // Variável para exibir o nome na tela
   public nomeUsuario: string = '';
@@ -23,7 +25,7 @@ export class NavbarComponent implements OnInit {
   public isCollapsed = true;
   @ViewChild("navbar-cmp", { static: false }) button;
 
-  constructor(location: Location, private renderer: Renderer2, private element: ElementRef, private router: Router) {
+  constructor(location: Location, private renderer: Renderer2, private element: ElementRef, private router: Router, private alertaService: AlertaService) {
     this.location = location;
     this.nativeElement = element.nativeElement;
     this.sidebarVisible = false;
@@ -37,8 +39,21 @@ export class NavbarComponent implements OnInit {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
     var navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName('navbar-toggle')[0];
+
+    this.carregarAlertas();
+
     this.router.events.subscribe((event) => {
       this.sidebarClose();
+    });
+  }
+
+  // Criar um método separado deixa o código mais limpo
+  carregarAlertas() {
+    this.alertaService.obterAlertasManutencao().subscribe({
+      next: (dados) => {
+        this.notificacoes = dados;
+      },
+      error: (err) => console.error('Erro ao carregar alertas de manutenção', err)
     });
   }
 
@@ -106,12 +121,5 @@ export class NavbarComponent implements OnInit {
     }
 
   }
-
-  //array de notificações
-  public notificacoes = [
-    { mensagem: '🚨 Veículo com manutenção atrasada', link: '/manutencao' },
-    { mensagem: '⛽ Novo abastecimento registrado', link: '/abastecimentos' },
-    { mensagem: '📅 Revisão agendada para amanhã', link: '/revisoes' }
-  ];
 
 }
