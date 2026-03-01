@@ -28,7 +28,7 @@ export class ManutencoesRevisoesComponent implements OnInit {
       oficinaResponsavel: ['', Validators.required],
       valorServico: ['', [Validators.required, Validators.min(0)]],
       itensSubstituidos: [''],
-      proximaRevisaoKm: ['', Validators.required]
+      validade: ['', Validators.required]
     });
   }
 

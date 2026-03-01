@@ -10,5 +10,5 @@ export interface ManutencaoModel {
 
     // Campos cruciais para o alerta da RN003
     proximaRevisaoData: string;
-    proximaRevisaoKm: number;
+    validade: number;
 }
