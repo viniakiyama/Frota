@@ -6,7 +6,8 @@ import { ManutencaoModel } from '../../models/manutencao.model';
 
 @Component({
   selector: 'app-manutencoes-revisoes',
-  templateUrl: './manutencoes-revisoes.component.html'
+  templateUrl: './manutencoes-revisoes.component.html',
+  styleUrls: ['./manutencoes-revisoes.component.scss']
 })
 export class ManutencoesRevisoesComponent implements OnInit {
   formManutencao: FormGroup;

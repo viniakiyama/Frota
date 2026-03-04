@@ -7,8 +7,5 @@ export interface ManutencaoModel {
     quilometragem: number;
     oficinaResponsavel: string;
     valorServico: number;
-
-    // Campos cruciais para o alerta da RN003
-    proximaRevisaoData: string;
     validade: number;
 }

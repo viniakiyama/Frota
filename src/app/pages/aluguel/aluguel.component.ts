@@ -9,6 +9,7 @@ import { AluguelService } from 'app/services/aluguel.service';
     styleUrls: ['./aluguel.component.css']
 })
 export class AluguelComponent implements OnInit {
+    public nomeUsuario: string = '';
     aluguelForm: FormGroup;
     veiculosDisponiveis: any[] = [];
     veiculosAlugados: any[] = [];
@@ -20,12 +21,15 @@ export class AluguelComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        // Busca o nome do mesmo jeito que a Navbar faz
+        this.nomeUsuario = localStorage.getItem('usuarioLogado') || 'Usuário';
+
         this.aluguelForm = this.fb.group({
             veiculoId: ['', Validators.required],
             motorista: ['', Validators.required],
             dataHoraTransferencia: [this.getDataAtual(), Validators.required],
             localOrigem: ['', Validators.required],
-            localDestino: ['', Validators.required]
+            localDestino: ['', Validators.required],
         });
 
         this.atualizarListas();
@@ -66,8 +70,9 @@ export class AluguelComponent implements OnInit {
                 placa: veiculoSelecionado ? veiculoSelecionado.placa : '',
                 modelo: veiculoSelecionado ? veiculoSelecionado.modelo : '',
                 motorista: dados.motorista.toUpperCase(),
-                localOrigem: ['', Validators.required],
-                localDestino: ['', Validators.required],
+                localOrigem: dados.localOrigem,
+                localDestino: dados.localDestino,
+                nomeUsuario: this.nomeUsuario
             };
 
             this.aluguelService.registrarAluguel(payload).subscribe({

@@ -80,19 +80,18 @@
                         <th>MOTORISTA</th>
                         <th>LOCAL DESTINO</th>
                         <th>SITUAÇÃO</th>
+                        <th>RESPONSÁVEL PELA OPERAÇÃO</th>
                     </thead>
                     <tbody>
                         <tr *ngFor="let v of veiculosAlugados">
                             <td>{{ v.placa }}</td>
                             <td>{{ v.modelo }}</td>
-
                             <td>{{ v.motorista }}</td>
-
                             <td>{{ v.localDestino }}</td>
-
                             <td>
                                 <span class="badge badge-danger">ALUGADO</span>
                             </td>
+                            <td>{{ v.nomeUsuario }}</td>
                         </tr>
                     </tbody>
                 </table>
