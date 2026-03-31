@@ -29,6 +29,11 @@
         <input type="number" class="form-control" [(ngModel)]="novaTroca.valorCusto">
       </div>
 
+      <div class="col-md-2">
+        <label class="form-label fw-bold">Validade</label>
+        <input type="number" class="form-control" [(ngModel)]="novaTroca.validade" placeholder="Validade do produto (dias)">
+      </div>
+
       <div class="col-md-10">
         <label class="form-label fw-bold">Motivo da Substituição</label>
         <input type="text" class="form-control" [(ngModel)]="novaTroca.motivoSubstituicao"
@@ -50,6 +55,7 @@
         <th>KM</th>
         <th>Motivo</th>
         <th>Custo</th>
+        <th>Validade (Dias)</th>
       </tr>
     </thead>
     <tbody>
@@ -60,6 +66,7 @@
         <td>{{ t.quilometragemNoMomento }} KM</td>
         <td>{{ t.motivoSubstituicao }}</td>
         <td>{{ t.valorCusto | currency:'BRL' }}</td>
+        <td>{{ t.validade }} dias</td>
       </tr>
     </tbody>
   </table>

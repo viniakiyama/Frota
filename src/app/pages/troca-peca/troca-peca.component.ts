@@ -44,7 +44,8 @@ export class TrocaPecaComponent implements OnInit {
     pecaId: null,
     quilometragemNoMomento: 0,
     motivoSubstituicao: '',
-    valorCusto: 0
+    valorCusto: 0,
+    validade: 0
   };
 
   constructor(
@@ -69,7 +70,7 @@ export class TrocaPecaComponent implements OnInit {
     this.trocaService.registrarTroca(this.novaTroca).subscribe(() => {
       //alert('Troca registrada com sucesso!');
       this.carregarDados(); // Atualiza a tabela
-      this.novaTroca = { veiculoId: null, pecaId: null, quilometragemNoMomento: 0, motivoSubstituicao: '', valorCusto: 0 };
+      this.novaTroca = { veiculoId: null, pecaId: null, quilometragemNoMomento: 0, motivoSubstituicao: '', valorCusto: 0, validade: 0 };
     });
   }
 }

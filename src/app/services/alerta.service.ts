@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 export interface Alerta {
     mensagem: string;
     link: string;
-    tipo: 'manutencao' | 'documento' | 'financeiro';
+    tipo: 'manutencao' | 'documento' | 'financeiro' | 'consumo';
 }
 
 @Injectable({
